@@ -60,13 +60,13 @@ function App() {
                             swap
                         </button>
                     </div>
-                    <div className="w-full mt-1 mb-4">
+                    <div className="w-full mt-1 mb-4 ">
                         <InputBox
                             label="To"
                             amount={convertedAmount}
                             currencyOptions={options}
                             onCurrencyChange={(currency) => setTo(currency)}
-                            selectCurrency={from}
+                            selectCurrency={to}
                             amountDisable
                         />
                     </div>
