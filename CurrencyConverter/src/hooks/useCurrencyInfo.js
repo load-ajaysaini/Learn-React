@@ -1,15 +1,27 @@
 import { useEffect, useState } from "react";
 
-function useCurrrencyInfo(currency){
-    const [data, setData] = useState({})
+function useCurrencyInfo(currency) {
+  const [data, setData] = useState({});
+  
+  useEffect(() => {
+    const API_KEY = "86964a32362176ac9444ca7b"; 
+    const apiUrl = `https://open.er-api.com/v6/latest/${currency}?apikey=${API_KEY}`;
 
-    useEffect(() => {
-        fetch(`https://api.exchangeratesapi.io/latest?base=${currency}`)
-     .then(res => res.json())
-     .then(() => setData(res[currency]) )  
-    }, [currency])
+    fetch(apiUrl)
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.result === "success") {
+          setData(res.conversion_rates);
+        } else {
+          console.error("Error fetching currency data:", res.error);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching currency data:", error);
+      });
+  }, [currency]);
 
-    return data
+  return data;
 }
 
-export default useCurrrencyInfo
+export default useCurrencyInfo;
