@@ -7,7 +7,9 @@ function App() {
   const [todos, setTodos] = useState([])
 
   const addTodo = (todos) => {
-    
+    setTodos((prev) => {
+      
+    })
   }
 
   return (
